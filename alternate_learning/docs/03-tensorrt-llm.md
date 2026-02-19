@@ -11,8 +11,8 @@ TensorRT-LLM provides high-performance LLM inference by:
 
 ```mermaid
 flowchart LR
-  W[Weights (HF/ckpt)] --> OPT[Graph/Kernel Optimizations]
-  OPT --> Q[Quantization (optional)]
+  W[Weights HF or ckpt ] --> OPT[Graph/Kernel Optimizations]
+  OPT --> Q[Quantization optional]
   Q --> ENG[Build TRT-LLM Engine]
   ENG --> META[Attach Metadata<br/>GPU arch, max seq, precision]
   META --> ART[Publish to Artifact Store]
