@@ -1,0 +1,19 @@
+# KEDA ScaledObject stub (Prometheus trigger example)
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: triton-llm-scaledobject
+  namespace: llm-inference
+spec:
+  scaleTargetRef:
+    name: triton-llm
+  minReplicaCount: 2
+  maxReplicaCount: 20
+  cooldownPeriod: 60
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: http://prometheus-operated.monitoring.svc:9090
+      metricName: triton_rps
+      threshold: "200"
+      query: sum(rate(triton_inference_request_success[1m]))

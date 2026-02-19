@@ -1,0 +1,18 @@
+# config.pbtxt.example (conceptual)
+name: "llm"
+backend: "tensorrtllm"
+max_batch_size: 8
+
+dynamic_batching {
+  preferred_batch_size: [ 1, 2, 4, 8 ]
+  max_queue_delay_microseconds: 2000
+}
+
+instance_group [
+  { kind: KIND_GPU count: 1 }
+]
+
+parameters [
+  { key: "max_sequence_length" value: { string_value: "4096" } }
+  { key: "precision" value: { string_value: "fp16" } }
+]
