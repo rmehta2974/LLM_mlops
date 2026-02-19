@@ -113,7 +113,7 @@ flowchart LR
     end
 
     subgraph Sync["Sync Job"]
-        Init[Init Container / Job]
+        Init[Init Container or Job]
     end
 
     subgraph Triton["Triton Pods"]
@@ -133,7 +133,7 @@ flowchart LR
 flowchart TD
     subgraph Dev["Development"]
         Notebook[Jupyter on DGX]
-        HF[Hugging Face / NGC]
+        HF[Hugging Face or  NGC]
     end
 
     subgraph Build["Build"]
@@ -161,7 +161,7 @@ flowchart TD
 
 ---
 
-## 6. DGX / HGX-Specific Considerations
+## 6. DGX or HGX-Specific Considerations
 
 | Aspect | Detail |
 |--------|--------|
@@ -184,7 +184,7 @@ nvidia-smi mig -cgi 1g.5gb -C
 
 | Requirement | Solution |
 |-------------|----------|
-| GPU-to-GPU (NCCL) | RDMA (RoCE/InfiniBand), fast interconnect |
+| GPU-to-GPU (NCCL) | RDMA (RoCEorInfiniBand), fast interconnect |
 | Client-to-Triton | Load balancer, Ingress |
 | Model sync | NFS, object storage, or init containers |
 
