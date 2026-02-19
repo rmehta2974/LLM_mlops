@@ -1,5 +1,3 @@
-# End-to-end
-
 ```mermaid
 flowchart TB
   U[Clients] --> GW[Gateway / Ingress]
