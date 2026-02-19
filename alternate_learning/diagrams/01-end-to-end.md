@@ -1,3 +1,5 @@
+# End-to-end
+
 ```mermaid
 flowchart TB
   U[Clients] --> GW[Gateway / Ingress]
@@ -5,7 +7,7 @@ flowchart TB
   RT --> TR[Triton Pods]
   TR --> TRT[TensorRT-LLM]
   TRT --> GPU[GPU Pool]
-  TR --> MR[Model Repo: ODF or S3 or GCS]
+  TR --> MR[Model Repo (ODF/S3/GCS)]
   TR --> PROM[Metrics]
   TR --> LOG[Logs/Traces]
 ```

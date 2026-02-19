@@ -39,3 +39,10 @@ This repository is a **deep, step-by-step** GitHub documentation pack for design
 8. ODF storage patterns: `docs/08-odf-storage.md`
 9. Troubleshooting: `runbooks/05-troubleshooting.md`
 10. Cloud reference (AWS/GCP): `cloud/README.md`
+
+## Added deep-dive docs
+
+- `docs/09-model-optimization.md`
+- `docs/10-mission-critical-ops.md`
+- `docs/11-load-balancing-ha-routing.md`
+- `docs/12-kubeflow-mlflow-implementation.md`
