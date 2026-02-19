@@ -24,18 +24,18 @@ flowchart TB
             HGX[HGX H100]
         end
 
-        subgraph K8s["Kubernetes / OpenShift"]
+        subgraph K8s["Kubernetes or  OpenShift"]
             Triton[Triton Inference]
             Train[Training Jobs]
             Pipeline[Kubeflow Pipelines]
         end
 
         subgraph Storage["Storage"]
-            NFS[NFS / GPFS]
+            NFS[NFS or GPFS]
             Object[Object Storage]
         end
 
-        subgraph NGC["NGC / Model Registry"]
+        subgraph NGC["NGC or Model Registry"]
             Containers[Containers]
             Models[Pre-trained Models]
         end
