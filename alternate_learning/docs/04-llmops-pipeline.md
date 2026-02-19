@@ -14,10 +14,10 @@ You need reproducibility, promotion, and rollback.
 
 ```mermaid
 flowchart TB
-  A[Train/Fine-tune] --> B[Track + Register (MLflow)]
+  A[Train/Fine-tune] --> B[Track + Register MLflow]
   B --> C[Build TRT Engine]
   C --> D[Container Build]
-  D --> E[Deploy Staging (GitOps)]
+  D --> E[Deploy Staging GitOps]
   E --> F[Perf + Quality Gates]
   F --> G[Canary]
   G --> H[Prod]
