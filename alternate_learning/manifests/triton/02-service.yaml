@@ -3,9 +3,18 @@ kind: Service
 metadata:
   name: triton
   namespace: llm-inference
+  labels:
+    app: triton-llm
 spec:
   selector:
     app: triton-llm
   ports:
-  - port: 8000
+  - name: http
+    port: 8000
     targetPort: 8000
+  - name: grpc
+    port: 8001
+    targetPort: 8001
+  - name: metrics
+    port: 8002
+    targetPort: 8002

@@ -15,10 +15,13 @@
 | [04. Scaling & Availability](04-scaling-availability/) | Load balancing, HA, autoscaling, monitoring |
 | [05. Cloud Deployment](05-cloud-deployment/) | AWS, GCP, APIs, managed services |
 | [06. Operational Runbooks](06-operational-runbooks/) | Incident, change, event management |
+| [07. Deep Dive Q&A](07-deep-dive-qa/) | Model storage, PVC push, loading, canary, scenarios |
 
 **Quick navigation:**
 - [Quick Reference](QUICK-REFERENCE.md) – When to use what, config snippets, checklists
 - [Architecture Overview](ARCHITECTURE-OVERVIEW.md) – End-to-end system context and data flows
+- [Interview Prep Deep Dive](INTERVIEW-PREP-DEEP-DIVE.md) – Comprehensive interview preparation
+- [Deep Dive Q&A](07-deep-dive-qa/) – Model storage, PVC push, versioning, endpoints, scenarios
 
 ---
 
@@ -48,10 +51,18 @@ llmops-platform-docs/
 │   ├── 01-aws-sagemaker-neurons.md
 │   ├── 02-gcp-vertex-ai.md
 │   └── 03-api-design-patterns.md
-└── 06-operational-runbooks/
-    ├── 01-incident-management.md
-    ├── 02-change-management.md
-    └── 03-event-management.md
+├── 06-operational-runbooks/
+│   ├── 01-incident-management.md
+│   ├── 02-change-management.md
+│   └── 03-event-management.md
+├── 07-deep-dive-qa/
+│   ├── 01-model-storage-pvc-artifactory-registry.md
+│   ├── 02-rps-and-push-models-to-pvc.md
+│   ├── 03-model-loading-pipelines-canary.md
+│   ├── 04-scenarios.md
+│   ├── 05-multi-instance-pvc-versioning-endpoints.md
+│   └── 06-model-push-to-pvc-and-triton-endpoints.md
+└── INTERVIEW-PREP-DEEP-DIVE.md
 ```
 
 ---

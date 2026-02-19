@@ -28,3 +28,12 @@ Start with:
 - docs/02-scheduling-and-gpu-runtime.md
 - manifests/gpu-operator/
 - manifests/triton/
+
+## Added in v5: sharding, metrics, endpoints, performance triage
+
+- docs/03-gpu-sharding-multi-instance.md
+- docs/04-prometheus-metrics-and-troubleshooting.md
+- docs/05-triton-api-endpoints.md
+- diagrams/06-gpu-sharding-patterns.md
+- manifests/observability/01-servicemonitor-triton.yaml
+- runbooks/07-performance-triage.md

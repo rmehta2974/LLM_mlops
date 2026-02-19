@@ -1,0 +1,17 @@
+# ServiceMonitor for Triton metrics (Prometheus Operator / OpenShift user-workload monitoring)
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: triton-metrics
+  namespace: llm-inference
+spec:
+  selector:
+    matchLabels:
+      app: triton-llm
+  namespaceSelector:
+    matchNames:
+    - llm-inference
+  endpoints:
+  - port: metrics
+    interval: 15s
+    path: /metrics
