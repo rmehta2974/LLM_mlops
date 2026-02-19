@@ -11,7 +11,7 @@ Hands-on design notes for building an enterprise LLMOps pipeline with **Kubeflow
 ```mermaid
 flowchart TB
   KFP[Kubeflow Pipeline] --> ML[MLflow Tracking/Registry]
-  KFP --> ART[Artifacts (S3/GCS/ODF)]
+  KFP --> ART[Artifacts S3 or GCS or ODF)]
   ML --> GIT[Git Repo (manifests + version pointers)]
   GIT --> ARGO[ArgoCD]
   ARGO --> K8S[OpenShift/GKE/EKS]
