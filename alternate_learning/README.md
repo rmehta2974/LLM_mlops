@@ -1,48 +1,30 @@
-# LLMOps on Kubernetes/OpenShift: Triton + TensorRT-LLM (Enterprise Runbook)
+# Enterprise LLM Inference on OpenShift/Kubernetes with Triton + TensorRT-LLM
 
-Generated: 2026-02-19T15:09:39.905715Z
+Generated: 2026-02-19T18:29:14.823192Z
 
-This repository is a **deep, step-by-step** GitHub documentation pack for designing and operating a **production LLM inference platform** using:
+This repository provides end-to-end, production-grade documentation and manifests for deploying and operating GPU-accelerated LLM inference using:
 
-- **Triton Inference Server** (serving/runtime control plane)
-- **TensorRT-LLM** (LLM optimization + execution engines)
-- **OpenShift / Kubernetes** (multi-tenant, HA, scaling, policy)
-- **Kubeflow / MLflow** (MLOps/LLMOps pipelines, registry, promotion)
-- **Observability + SRE** (SLOs, dashboards, incident playbooks)
-- **OpenShift Data Foundation (ODF)** (artifact storage + HA model repo)
-- **AWS and GCP reference architectures** (cloud-native variants)
+- NVIDIA GPU Operator
+- Triton Inference Server
+- TensorRT-LLM optimized engines
+- Artifactory / S3 model distribution
+- Canary and blue/green rollouts
+- GitOps and CI/CD pipelines
+- OpenShift or upstream Kubernetes
+- Python inference clients
 
-> This is written for interviews and real implementations: **why / where / how**, scaling, availability, and troubleshooting.
+## Repo layout
 
----
+- docs/ — architecture, scheduling, pipelines, versioning
+- diagrams/ — Mermaid architecture and rollout diagrams
+- manifests/ — GPU Operator, Triton deployments, services, canary routing
+- pipelines/ — Tekton and GitHub Actions examples
+- clients/python/ — Python inference examples
+- runbooks/ — canary, rollback, troubleshooting
+- build/ — TRT-LLM build and publish scripts
 
-## Repo map
-
-- `docs/` — architecture and design docs
-- `diagrams/` — Mermaid diagrams (render in GitHub)
-- `manifests/` — Kubernetes/OpenShift YAML examples (Triton, autoscaling, GPU scheduling, configmaps)
-- `runbooks/` — operational playbooks (deploy, scale, debug, incident response)
-- `cloud/` — AWS & GCP implementation notes + patterns
-- `examples/` — sample config snippets (Triton model config, request profiles)
-
----
-
-## Quick start index
-
-1. Architecture overview: `docs/01-architecture-overview.md`
-2. Triton deep dive: `docs/02-triton-architecture.md`
-3. TensorRT-LLM deep dive: `docs/03-tensorrt-llm.md`
-4. LLMOps pipeline: `docs/04-llmops-pipeline.md`
-5. Scaling & HA: `docs/05-scaling-availability.md`
-6. Networking & API design: `docs/06-api-gateway-networking.md`
-7. Observability & SRE: `docs/07-observability-sre.md`
-8. ODF storage patterns: `docs/08-odf-storage.md`
-9. Troubleshooting: `runbooks/05-troubleshooting.md`
-10. Cloud reference (AWS/GCP): `cloud/README.md`
-
-## Added deep-dive docs
-
-- `docs/09-model-optimization.md`
-- `docs/10-mission-critical-ops.md`
-- `docs/11-load-balancing-ha-routing.md`
-- `docs/12-kubeflow-mlflow-implementation.md`
+Start with:
+- docs/01-architecture.md
+- docs/02-scheduling-and-gpu-runtime.md
+- manifests/gpu-operator/
+- manifests/triton/

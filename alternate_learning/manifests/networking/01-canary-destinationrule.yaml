@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: triton-dr
+  namespace: llm-inference
+spec:
+  host: triton
+  subsets:
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3

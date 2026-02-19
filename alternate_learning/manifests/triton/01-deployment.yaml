@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton-llm-v2
+  namespace: llm-inference
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: triton-llm
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: triton-llm
+        version: v2
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/gpu: ""
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      volumes:
+      - name: model-cache
+        emptyDir: {}
+      initContainers:
+      - name: fetch-model
+        image: curlimages/curl
+        command: ["sh","-c"]
+        args:
+        - |
+          curl -fSL https://artifactory.example.com/model.tar.gz -o /models.tar.gz
+          mkdir -p /models
+          tar -xzf /models.tar.gz -C /models
+        volumeMounts:
+        - name: model-cache
+          mountPath: /models
+      containers:
+      - name: triton
+        image: nvcr.io/nvidia/tritonserver:24.01-py3
+        args: ["tritonserver","--model-repository=/models"]
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - name: model-cache
+          mountPath: /models

@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: triton-llm-dr
+  namespace: llm-inference
+spec:
+  host: triton-llm
+  subsets:
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: triton-llm-vs
+  namespace: llm-inference
+spec:
+  hosts:
+  - triton-llm
+  http:
+  - route:
+    - destination:
+        host: triton-llm
+        subset: v2
+      weight: 99
+    - destination:
+        host: triton-llm
+        subset: v3
+      weight: 1

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: triton
+  namespace: llm-inference
+spec:
+  selector:
+    app: triton-llm
+  ports:
+  - port: 8000
+    targetPort: 8000

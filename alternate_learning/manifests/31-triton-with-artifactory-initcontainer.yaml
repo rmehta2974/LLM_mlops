@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton-llm-v3
+  namespace: llm-inference
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: triton-llm
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: triton-llm
+        version: v3
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/gpu: "true"
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      volumes:
+      - name: model-cache
+        emptyDir: {}
+      initContainers:
+      - name: fetch-model
+        image: curlimages/curl:8.6.0
+        env:
+        - name: ARTIFACT_URL
+          value: "https://artifactory.example.com/llm/llama3/70b/v3/models.tar.gz"
+        command: ["sh","-c"]
+        args:
+        - |
+          set -euo pipefail
+          curl -fSL "$ARTIFACT_URL" -o /models/models.tar.gz
+          tar -xzf /models/models.tar.gz -C /models
+          rm -f /models/models.tar.gz
+        volumeMounts:
+        - name: model-cache
+          mountPath: /models
+      containers:
+      - name: triton
+        image: nvcr.io/nvidia/tritonserver:24.01-py3
+        args: ["tritonserver","--model-repository=/models"]
+        ports:
+        - name: http
+          containerPort: 8000
+        - name: grpc
+          containerPort: 8001
+        - name: metrics
+          containerPort: 8002
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+          requests:
+            nvidia.com/gpu: "1"
+        volumeMounts:
+        - name: model-cache
+          mountPath: /models
+        readinessProbe:
+          httpGet:
+            path: /v2/health/ready
+            port: 8000
+          initialDelaySeconds: 20
+          periodSeconds: 10
